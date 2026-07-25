@@ -2,6 +2,8 @@
 // The interceptor in AuthContext auto-attaches Bearer token + handles refresh.
 import { api } from '../context/AuthContext'
 
+const BASE_URL = import.meta.env.VITE_API_URL || '/'
+
 // ── Resume Checker ─────────────────────────────────────────
 export async function analyzeResume(file) {
   const formData = new FormData()
@@ -61,7 +63,7 @@ export function generateCoverLetter(file, jobDescription, onChunk, onDone, onErr
 
   const token = localStorage.getItem('access_token')
 
-  fetch('/cover-letter', {
+  fetch(`${BASE_URL}cover-letter`, {
     method:  'POST',
     body:    formData,
     signal:  controller.signal,
@@ -104,7 +106,7 @@ export function streamCareerCoachChat(context, history, message, onChunk, onDone
   const controller = new AbortController()
   const token = localStorage.getItem('access_token')
 
-  fetch('/career-coach/chat', {
+  fetch(`${BASE_URL}career-coach/chat`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

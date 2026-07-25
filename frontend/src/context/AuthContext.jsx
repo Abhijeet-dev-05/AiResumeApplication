@@ -4,7 +4,9 @@ import axios from 'axios'
 const AuthContext = createContext(null)
 export function useAuth() { return useContext(AuthContext) }
 
-const api = axios.create({ baseURL: '/' })
+const BASE_URL = import.meta.env.VITE_API_URL || '/'
+
+const api = axios.create({ baseURL: BASE_URL })
 
 // ── Attach access token to every request ──────────────────
 api.interceptors.request.use((config) => {
@@ -23,7 +25,7 @@ api.interceptors.response.use(
       try {
         const refresh = localStorage.getItem('refresh_token')
         if (!refresh) throw new Error('no refresh token')
-        const { data } = await axios.post('/auth/refresh', { refresh_token: refresh })
+        const { data } = await axios.post(`${BASE_URL}auth/refresh`, { refresh_token: refresh })
         localStorage.setItem('access_token',  data.access_token)
         localStorage.setItem('refresh_token', data.refresh_token)
         original.headers.Authorization = `Bearer ${data.access_token}`
