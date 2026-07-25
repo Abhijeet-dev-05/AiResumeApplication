@@ -1162,7 +1162,7 @@ async def build_profile(
         "name":         doc["name"],
         "title":        doc["title"],
         "profile_url":  f"/profile/{profile_id}",
-        "share_url":    f"http://localhost:8000/profile/{profile_id}",
+        "share_url":    f"{os.getenv('BACKEND_URL', 'http://localhost:8000')}/profile/{profile_id}",
     }
 
 
@@ -1209,7 +1209,7 @@ async def get_my_profile(current_user: dict = Depends(get_current_user)):
             "name":        doc["name"],
             "title":       doc["title"],
             "profile_url": f"/profile/{str(doc['_id'])}",
-            "share_url":   f"http://localhost:8000/profile/{str(doc['_id'])}",
+            "share_url":   f"{os.getenv('BACKEND_URL', 'http://localhost:8000')}/profile/{str(doc['_id'])}",
             "created_at":  doc["created_at"].isoformat(),
             "updated_at":  doc["updated_at"].isoformat(),
         }

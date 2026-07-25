@@ -100,7 +100,7 @@ function ShareCard({ shareUrl, profileId }) {
         </button>
       </div>
 
-      <a href={`/profile/${profileId}`} target="_blank" rel="noopener noreferrer"
+      <a href={`${import.meta.env.VITE_API_URL || ''}profile/${profileId}`} target="_blank" rel="noopener noreferrer"
         className="mt-3 flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-semibold transition-colors">
         <ExternalLink className="w-4 h-4" />
         Open Portfolio
@@ -147,7 +147,7 @@ function ExistingProfileCard({ profile, onRegenerate }) {
       </div>
 
       <div className="flex gap-2">
-        <a href={`/profile/${profile.profile_id}`} target="_blank" rel="noopener noreferrer"
+        <a href={`${import.meta.env.VITE_API_URL || ''}profile/${profile.profile_id}`} target="_blank" rel="noopener noreferrer"
           className="flex-1 flex items-center justify-center gap-2 py-2 rounded-xl border border-border text-sm text-foreground hover:bg-muted transition-colors">
           <ExternalLink className="w-3.5 h-3.5" />
           View
@@ -220,7 +220,7 @@ function PreviewPanel({ profileId }) {
       {show && (
         <div className="relative" style={{ height: '600px' }}>
           <iframe
-            src={`/profile/${profileId}`}
+            src={`${import.meta.env.VITE_API_URL || ''}profile/${profileId}`}
             title="Portfolio Preview"
             className="w-full h-full border-0"
             sandbox="allow-scripts allow-same-origin"

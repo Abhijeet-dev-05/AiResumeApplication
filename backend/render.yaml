@@ -19,6 +19,8 @@ services:
         sync: false
       - key: SERPAPI_KEY
         sync: false
+      - key: BACKEND_URL
+        value: https://airesumeapplication-3.onrender.com
       - key: JWT_ALGORITHM
         value: HS256
       - key: ACCESS_TOKEN_EXPIRE_MINUTES
