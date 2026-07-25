@@ -233,10 +233,10 @@ export default function Landing({ onGetStarted, onLogin }) {
       <section className="border-y border-border bg-muted/30 py-14">
         <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {[
-            { label: 'Resumes Analyzed',    value: 12400, suffix: '+' },
-            { label: 'Cover Letters',        value: 8900,  suffix: '+' },
-            { label: 'Interviews Prepared', value: 6200,  suffix: '+' },
-            { label: 'Jobs Landed',          value: 2100,  suffix: '+' },
+            { label: 'Resumes Analyzed',    value: 5,  suffix: '+' },
+            { label: 'Cover Letters',        value: 10, suffix: '+' },
+            { label: 'Interviews Prepared', value: 3,  suffix: '+' },
+            { label: 'Jobs Landed',          value: 5,  suffix: '+' },
           ].map(({ label, value, suffix }) => (
             <div key={label}>
               <p className="text-3xl md:text-4xl font-black text-primary mb-1">
