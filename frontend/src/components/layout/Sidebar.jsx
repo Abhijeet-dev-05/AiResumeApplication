@@ -1,4 +1,4 @@
-import { FileSearch, FileText, BarChart2, MessageSquare, Globe, Brain, Sparkles, LogOut } from 'lucide-react'
+import { FileSearch, FileText, BarChart2, MessageSquare, Globe, Brain, Sparkles, LogOut, Briefcase } from 'lucide-react'
 import { useAuth } from '../../context/AuthContext'
 
 const tools = [
@@ -8,6 +8,7 @@ const tools = [
   { id: 'profile-builder',     label: 'Profile Builder',        icon: Globe,         available: true  },
   { id: 'interview-questions', label: 'Interview Prep',         icon: Brain,         available: true  },
   { id: 'career-coach',        label: 'AI Career Coach',        icon: MessageSquare, available: true  },
+  { id: 'job-board',           label: 'Job Board',              icon: Briefcase,     available: true  },
 ]
 
 function getInitials(name = '') {

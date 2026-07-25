@@ -19,6 +19,7 @@ export default defineConfig({
       '/career-coach':         'http://localhost:8000',
       '/auth':                 'http://localhost:8000',
       '/health':               'http://localhost:8000',
+      '/jobs':                 'http://localhost:8000',
     },
   },
 })

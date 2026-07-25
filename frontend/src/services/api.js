@@ -91,7 +91,17 @@ export function generateCoverLetter(file, jobDescription, onChunk, onDone, onErr
   return controller
 }
 
-// ── Career Coach ───────────────────────────────────────────
+// ── Jobs Board ─────────────────────────────────────────────
+export async function fetchJobs({ limit = '20', title = '', location = '', company = '', experience = '', job_type = '' } = {}) {
+  const params = new URLSearchParams({ limit })
+  if (title)      params.set('title',      title)
+  if (location)   params.set('location',   location)
+  if (company)    params.set('company',    company)
+  if (experience) params.set('experience', experience)
+  if (job_type)   params.set('job_type',   job_type)
+  const response = await api.get(`/jobs?${params.toString()}`, { timeout: 20000 })
+  return response.data
+}
 export async function initCareerCoach(file) {
   const formData = new FormData()
   formData.append('file', file)

@@ -11,6 +11,7 @@ import ResumeScorer       from './pages/ResumeScorer'
 import ProfileBuilder     from './pages/ProfileBuilder'
 import CareerCoach         from './pages/CareerCoach'
 import InterviewQuestions from './pages/InterviewQuestions'
+import JobBoard           from './pages/JobBoard'
 
 const APP_PAGES = {
   'resume-checker':      ResumeChecker,
@@ -19,6 +20,7 @@ const APP_PAGES = {
   'profile-builder':     ProfileBuilder,
   'interview-questions': InterviewQuestions,
   'career-coach':        CareerCoach,
+  'job-board':           JobBoard,
 }
 
 // ── Inner app ─────────────────────────────────────────────

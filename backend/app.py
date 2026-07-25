@@ -1454,3 +1454,56 @@ async def career_coach_chat(
         stream(),
         media_type="text/plain; charset=utf-8",
     )
+
+
+# ─────────────────────────────────────────
+# Jobs Board — proxy to IndianAPI Jobs API
+# ─────────────────────────────────────────
+import httpx
+
+JOBS_API_KEY  = os.getenv("JOBS_API_KEY", "")
+JOBS_BASE_URL = "https://jobs.indianapi.in"
+
+
+@app.get("/jobs")
+async def get_jobs(
+    limit:      str = "20",
+    title:      str = "",
+    location:   str = "",
+    company:    str = "",
+    experience: str = "",
+    job_type:   str = "",
+    current_user: dict = Depends(get_current_user),
+):
+    if not JOBS_API_KEY:
+        raise HTTPException(status_code=500, detail="Jobs API key not configured.")
+
+    params: dict = {"limit": limit}
+    if title:      params["title"]      = title
+    if location:   params["location"]   = location
+    if company:    params["company"]    = company
+    if experience: params["experience"] = experience
+    if job_type:   params["job_type"]   = job_type
+
+    try:
+        async with httpx.AsyncClient(timeout=15) as client:
+            resp = await client.get(
+                f"{JOBS_BASE_URL}/jobs",
+                params=params,
+                headers={"X-Api-Key": JOBS_API_KEY},
+            )
+        if resp.status_code == 401:
+            raise HTTPException(status_code=502, detail="Jobs API key is invalid.")
+        if resp.status_code == 422:
+            raise HTTPException(status_code=422, detail="Invalid query parameters.")
+        if resp.status_code != 200:
+            raise HTTPException(status_code=502, detail=f"Jobs API error: {resp.status_code}")
+
+        return resp.json()
+
+    except httpx.TimeoutException:
+        raise HTTPException(status_code=504, detail="Jobs API timed out. Try again.")
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=502, detail=f"Failed to fetch jobs: {str(e)}")
