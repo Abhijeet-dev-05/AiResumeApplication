@@ -22,7 +22,7 @@ AI-powered resume analysis platform that helps job seekers optimize resumes, pre
 
 ### 🚀 Try Resume Genie
 
-### **hhttps://ai-resume-application-huh6-n296kd4u8-1by23is006-1836s-projects.vercel.app/**
+### **https://ai-resume-application-5wvu.vercel.app/**
 
 Experience all AI-powered features instantly without any local setup.
 
