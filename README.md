@@ -1,185 +1,282 @@
-# Resume Genie
+# 🚀 Resume Genie
 
-An AI-powered resume analysis platform that helps job seekers optimize their resumes, prepare for interviews, generate cover letters, build portfolio websites, and get personalized career coaching — all from a single PDF upload.
+<p align="center">
+
+![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-009688?style=for-the-badge&logo=fastapi)
+![MongoDB](https://img.shields.io/badge/MongoDB-Database-47A248?style=for-the-badge&logo=mongodb)
+![LangChain](https://img.shields.io/badge/LangChain-AI-blue?style=for-the-badge)
+![Groq](https://img.shields.io/badge/Groq-LLM-orange?style=for-the-badge)
+![Vite](https://img.shields.io/badge/Vite-Build-purple?style=for-the-badge&logo=vite)
+![License](https://img.shields.io/badge/License-MIT-success?style=for-the-badge)
+
+</p>
+
+<p align="center">
+AI-powered resume analysis platform that helps job seekers optimize resumes, prepare for interviews, generate cover letters, build portfolio websites, and receive personalized AI career coaching — all from a single PDF upload.
+</p>
 
 ---
 
-## Features
+# 🌐 Live Demo
+
+### 🚀 Try Resume Genie
+
+### **https://ai-resume-application-huh6.vercel.app/**
+
+Experience all AI-powered features instantly without any local setup.
+
+---
+
+# ✨ Features
 
 | Feature | Description |
-|---|---|
-| **Resume Checker** | Full ATS-level evaluation with scoring across 9 categories, skills extraction, strengths/weaknesses, and actionable improvement suggestions |
-| **Resume Scorer** | Score your resume against a specific job description with keyword matching, skill gap analysis, and industry-specific feedback |
-| **Cover Letter Generator** | Streaming AI-generated, ATS-friendly cover letter tailored to a job description |
-| **Profile Builder** | Generates a self-contained premium HTML/CSS/JS portfolio website from your resume |
-| **Interview Questions** | Generates a categorized question bank (5–8 questions per category) based on your actual resume content |
-| **Career Coach** | Streaming chat interface with an AI mentor that has full context of your resume |
+|----------|-------------|
+| 📄 Resume Checker | ATS-style resume evaluation with health score, strengths, weaknesses, skills extraction, and actionable improvement suggestions |
+| 🎯 Resume Scorer | Compare your resume against any job description with keyword matching, ATS score, skill-gap analysis, and recruiter feedback |
+| ✉️ Cover Letter Generator | AI-generated ATS-friendly cover letters tailored to your target role using streaming responses |
+| 🌐 Profile Builder | Automatically generates a premium personal portfolio website (HTML, CSS & JavaScript) directly from your resume |
+| 🎤 Interview Questions | Generates categorized interview questions based on your actual projects, skills, and experience |
+| 🤖 AI Career Coach | Interactive AI mentor that understands your resume and provides personalized career guidance |
 
 ---
 
-## Tech Stack
+# 🖼️ Screenshots
 
-### Backend
-- **FastAPI** — REST API with async support and streaming responses
-- **LangChain + Groq** — LLM orchestration using `llama-3.3-70b-versatile`
-- **MongoDB (Motor)** — Async database for users and generated profiles
-- **PyPDF** — PDF text extraction
-- **JWT Authentication** — Access + refresh token flow with bcrypt password hashing
+> Add screenshots here after deployment.
 
-### Frontend
-- **React 19** — Component-based UI
-- **Vite** — Build tool and dev server
-- **Tailwind CSS v4** — Utility-first styling
-- **Recharts** — Score visualization charts
-- **Axios** — HTTP client with auth interceptors
-- **Lucide React** — Icon library
+- Landing Page
+- Resume Checker
+- Resume Scorer
+- Cover Letter Generator
+- Profile Builder
+- Interview Questions
+- Career Coach
 
 ---
 
-## Project Structure
+# 🛠 Tech Stack
+
+## Backend
+
+- FastAPI
+- LangChain
+- Groq API (Llama 3.3 70B Versatile)
+- MongoDB (Motor)
+- JWT Authentication
+- PyPDF
+- Pydantic
+- bcrypt
+
+---
+
+## Frontend
+
+- React 19
+- Vite
+- Tailwind CSS v4
+- Axios
+- Recharts
+- Lucide React
+
+---
+
+## AI
+
+- LangChain
+- Groq
+- Prompt Engineering
+- Streaming Responses
+
+---
+
+# 📂 Project Structure
 
 ```
 Resume-Genie/
+│
 ├── backend/
-│   ├── app.py                  # FastAPI app, all API routes and LLM prompts
-│   ├── profile_builder.py      # Python HTML template for portfolio generation
-│   ├── html_template.py        # HTML utilities
+│   ├── app.py
+│   ├── profile_builder.py
+│   ├── html_template.py
 │   ├── requirements.txt
-│   ├── .env                    # Environment variables (not committed)
-│   └── auth/
-│       ├── config.py           # JWT and MongoDB config
-│       ├── database.py         # Motor async MongoDB client
-│       ├── jwt.py              # Token creation and verification
-│       ├── models.py           # User document schema
-│       ├── routes.py           # Auth endpoints (register, login, refresh, me)
-│       ├── schemas.py          # Pydantic request/response models
-│       └── security.py         # bcrypt password hashing
-└── frontend/
-    ├── src/
-    │   ├── pages/              # Full-page views (ResumeChecker, CoverLetter, etc.)
-    │   ├── components/         # Reusable UI components
-    │   ├── hooks/              # Custom React hooks per feature
-    │   ├── context/            # AuthContext (axios instance + token refresh) and ThemeContext
-    │   └── services/api.js     # All API calls, including streaming handlers
-    ├── vite.config.js          # Dev server with backend proxy
-    └── package.json
+│   ├── auth/
+│   │   ├── config.py
+│   │   ├── database.py
+│   │   ├── jwt.py
+│   │   ├── models.py
+│   │   ├── routes.py
+│   │   ├── schemas.py
+│   │   └── security.py
+│
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── hooks/
+│   │   ├── context/
+│   │   ├── pages/
+│   │   └── services/
+│   │
+│   ├── package.json
+│   └── vite.config.js
+│
+└── README.md
 ```
 
 ---
 
-## Getting Started
+# ⚙️ Getting Started
 
-### Prerequisites
-
-- Python 3.11+
-- Node.js 18+
-- MongoDB instance (local or Atlas)
-- [Groq API key](https://console.groq.com/)
-
-### 1. Clone the repository
+## Clone Repository
 
 ```bash
-git clone https://github.com/your-username/Resume-Genie.git
-cd Resume-Genie
+git clone https://github.com/Abhijeet-dev-05/AiResumeApplication.git
+
+cd AiResumeApplication
 ```
 
-### 2. Backend setup
+---
+
+# Backend Setup
 
 ```bash
 cd backend
 
-# Create and activate virtual environment
 python -m venv .venv
-.venv\Scripts\activate        # Windows
-# source .venv/bin/activate   # macOS/Linux
 
-# Install dependencies
+# Windows
+.venv\Scripts\activate
+
+# macOS/Linux
+source .venv/bin/activate
+
 pip install -r requirements.txt
 ```
 
-Create a `.env` file in the `backend/` directory:
+Create a `.env` file:
 
 ```env
-GROQ_API_KEY=your_groq_api_key_here
+GROQ_API_KEY=your_api_key
 
 MONGODB_URL=mongodb://localhost:27017
+
 MONGODB_DB_NAME=resume_genie
 
-JWT_SECRET_KEY=your-strong-secret-key
-JWT_REFRESH_SECRET_KEY=your-strong-refresh-secret-key
+JWT_SECRET_KEY=your_secret
+
+JWT_REFRESH_SECRET_KEY=your_refresh_secret
+
 JWT_ALGORITHM=HS256
+
 ACCESS_TOKEN_EXPIRE_MINUTES=30
+
 REFRESH_TOKEN_EXPIRE_DAYS=7
 ```
 
-Start the backend server:
+Run backend
 
 ```bash
 uvicorn app:app --reload --port 8000
 ```
 
-### 3. Frontend setup
+---
+
+# Frontend Setup
 
 ```bash
 cd frontend
+
 npm install
+
 npm run dev
 ```
 
-The app will be available at `http://localhost:5173`.
+Application runs at
+
+```
+http://localhost:5173
+```
 
 ---
 
-## API Endpoints
+# API Endpoints
 
-| Method | Endpoint | Auth | Description |
-|---|---|---|---|
-| `POST` | `/auth/register` | No | Create a new account |
-| `POST` | `/auth/login` | No | Login, returns JWT tokens |
-| `POST` | `/auth/refresh` | No | Refresh access token |
-| `GET` | `/auth/me` | Yes | Get current user profile |
-| `PATCH` | `/auth/me` | Yes | Update name or password |
-| `POST` | `/auth/logout` | No | Logout (client-side token drop) |
-| `POST` | `/analyze` | Yes | Full resume analysis |
-| `POST` | `/score-resume` | Yes | Score resume against a job description |
-| `POST` | `/cover-letter` | Yes | Generate cover letter (streaming) |
-| `POST` | `/build-profile` | Yes | Generate portfolio HTML, save to DB |
-| `GET` | `/my-profile` | Yes | Get current user's saved profile metadata |
-| `GET` | `/profile/{id}` | No | View a generated portfolio (public link) |
-| `POST` | `/interview-questions` | Yes | Generate interview question bank |
-| `POST` | `/career-coach/init` | Yes | Upload resume to start a coaching session |
-| `POST` | `/career-coach/chat` | Yes | Send a message, receive streaming response |
-| `GET` | `/health` | No | Health check |
+| Method | Endpoint | Description |
+|----------|----------|-------------|
+| POST | /auth/register | Register User |
+| POST | /auth/login | Login |
+| POST | /auth/refresh | Refresh JWT |
+| GET | /auth/me | Current User |
+| PATCH | /auth/me | Update Profile |
+| POST | /analyze | Resume Checker |
+| POST | /score-resume | Resume Scorer |
+| POST | /cover-letter | Cover Letter |
+| POST | /build-profile | Portfolio Generator |
+| POST | /interview-questions | Interview Generator |
+| POST | /career-coach/init | Start AI Career Coach |
+| POST | /career-coach/chat | Chat with Career Coach |
+| GET | /profile/{id} | Public Portfolio |
+| GET | /health | Health Check |
 
 ---
 
-## Environment Variables Reference
+# 🔐 Environment Variables
 
 | Variable | Description |
-|---|---|
-| `GROQ_API_KEY` | API key from [console.groq.com](https://console.groq.com/) |
-| `MONGODB_URL` | MongoDB connection string |
-| `MONGODB_DB_NAME` | Database name (default: `resume_genie`) |
-| `JWT_SECRET_KEY` | Secret for signing access tokens |
-| `JWT_REFRESH_SECRET_KEY` | Secret for signing refresh tokens |
-| `JWT_ALGORITHM` | Algorithm for JWT (default: `HS256`) |
-| `ACCESS_TOKEN_EXPIRE_MINUTES` | Access token TTL in minutes (default: `30`) |
-| `REFRESH_TOKEN_EXPIRE_DAYS` | Refresh token TTL in days (default: `7`) |
+|----------|-------------|
+| GROQ_API_KEY | Groq API Key |
+| MONGODB_URL | MongoDB URI |
+| MONGODB_DB_NAME | Database Name |
+| JWT_SECRET_KEY | JWT Secret |
+| JWT_REFRESH_SECRET_KEY | Refresh Secret |
+| JWT_ALGORITHM | JWT Algorithm |
+| ACCESS_TOKEN_EXPIRE_MINUTES | Access Token Expiry |
+| REFRESH_TOKEN_EXPIRE_DAYS | Refresh Token Expiry |
 
 ---
 
-## How It Works
+# 🚀 How It Works
 
-1. User signs up / logs in — JWT access and refresh tokens are issued.
-2. User uploads a PDF resume to any feature endpoint.
-3. The backend extracts text using PyPDF and sends it to the Groq LLM (`llama-3.3-70b-versatile`) via LangChain with a carefully engineered prompt.
-4. For standard features (Resume Checker, Scorer, Interview Questions), the LLM returns structured JSON which is parsed and sent to the frontend.
-5. For streaming features (Cover Letter, Career Coach), tokens are streamed back via `StreamingResponse` and rendered in real time.
-6. For Profile Builder, a lean data-extraction prompt extracts structured data, which is then fed into a server-side Python HTML template to generate the full portfolio — avoiding LLM token limits.
-7. Generated portfolios are stored in MongoDB and accessible via a public shareable link (`/profile/{id}`).
+1. User registers and logs in securely using JWT authentication.
+2. Uploads a resume (PDF).
+3. Resume text is extracted using PyPDF.
+4. LangChain sends the resume to Groq Llama 3.3 70B with carefully engineered prompts.
+5. AI generates:
+   - Resume analysis
+   - ATS score
+   - Resume scoring
+   - Cover letter
+   - Interview questions
+   - Career guidance
+   - Portfolio website
+6. Streaming responses are rendered live for Cover Letter and Career Coach.
+7. Generated portfolio websites are stored in MongoDB and shared through a public URL.
 
 ---
 
-## License
+# 🎯 Future Improvements
 
-MIT
+- Resume Version History
+- AI Mock Interview with Voice
+- Job Recommendation Engine
+- Resume Templates
+- LinkedIn Optimizer
+- Multi-language Support
+- PDF Portfolio Export
+- Admin Dashboard
+
+---
+
+# 👨‍💻 Author
+
+**Abhijeet Kumar**
+
+- GitHub: https://github.com/Abhijeet-dev-05
+- LinkedIn: *(Add your LinkedIn URL)*
+- Portfolio: https://ai-resume-application-huh6.vercel.app/
+
+---
+
+# 📄 License
+
+This project is licensed under the **MIT License**.
