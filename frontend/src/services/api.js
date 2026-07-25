@@ -92,13 +92,10 @@ export function generateCoverLetter(file, jobDescription, onChunk, onDone, onErr
 }
 
 // ── Jobs Board ─────────────────────────────────────────────
-export async function fetchJobs({ limit = '20', title = '', location = '', company = '', experience = '', job_type = '' } = {}) {
-  const params = new URLSearchParams({ limit })
-  if (title)      params.set('title',      title)
-  if (location)   params.set('location',   location)
-  if (company)    params.set('company',    company)
-  if (experience) params.set('experience', experience)
-  if (job_type)   params.set('job_type',   job_type)
+export async function fetchJobs({ q = 'Software Engineer', location = '', ltype = '', start = 0 } = {}) {
+  const params = new URLSearchParams({ q, start })
+  if (location) params.set('location', location)
+  if (ltype)    params.set('ltype', ltype)
   const response = await api.get(`/jobs?${params.toString()}`, { timeout: 60000 })
   return response.data
 }

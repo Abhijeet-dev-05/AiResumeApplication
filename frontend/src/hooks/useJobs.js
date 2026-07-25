@@ -11,7 +11,7 @@ export function useJobs() {
     setError(null)
     try {
       const data = await fetchJobs(filters)
-      setJobs(Array.isArray(data) ? data : [])
+      setJobs(Array.isArray(data.jobs_results) ? data.jobs_results : [])
     } catch (err) {
       setError(err.message || 'Failed to fetch jobs.')
       setJobs([])

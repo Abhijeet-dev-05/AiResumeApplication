@@ -1457,52 +1457,52 @@ async def career_coach_chat(
 
 
 # ─────────────────────────────────────────
-# Jobs Board — proxy to IndianAPI Jobs API
+# Jobs Board — SerpAPI google_jobs engine
 # ─────────────────────────────────────────
 import httpx
 
-JOBS_API_KEY  = os.getenv("JOBS_API_KEY", "")
-JOBS_BASE_URL = "https://jobs.indianapi.in"
+SERPAPI_KEY   = os.getenv("SERPAPI_KEY", "")
+SERPAPI_URL   = "https://serpapi.com/search.json"
 
 
 @app.get("/jobs")
 async def get_jobs(
-    limit:      str = "20",
-    title:      str = "",
-    location:   str = "",
-    company:    str = "",
-    experience: str = "",
-    job_type:   str = "",
-    current_user: dict = Depends(get_current_user),
+    q:        str = "Software Engineer",
+    location: str = "",
+    ltype:    str = "",   # "1" = full-time, etc.
+    start:    int = 0,
+    hl:       str = "en",
 ):
-    if not JOBS_API_KEY:
-        raise HTTPException(status_code=500, detail="Jobs API key not configured.")
+    if not SERPAPI_KEY:
+        raise HTTPException(status_code=500, detail="SerpAPI key not configured.")
 
-    params: dict = {"limit": limit}
-    if title:      params["title"]      = title
-    if location:   params["location"]   = location
-    if company:    params["company"]    = company
-    if experience: params["experience"] = experience
-    if job_type:   params["job_type"]   = job_type
+    params: dict = {
+        "engine":  "google_jobs",
+        "q":       q,
+        "hl":      hl,
+        "api_key": SERPAPI_KEY,
+        "start":   start,
+    }
+    if location: params["location"] = location
+    if ltype:    params["ltype"]    = ltype
 
     try:
-        async with httpx.AsyncClient(timeout=15) as client:
-            resp = await client.get(
-                f"{JOBS_BASE_URL}/jobs",
-                params=params,
-                headers={"X-Api-Key": JOBS_API_KEY},
-            )
-        if resp.status_code == 401:
-            raise HTTPException(status_code=502, detail="Jobs API key is invalid.")
-        if resp.status_code == 422:
-            raise HTTPException(status_code=422, detail="Invalid query parameters.")
-        if resp.status_code != 200:
-            raise HTTPException(status_code=502, detail=f"Jobs API error: {resp.status_code}")
+        async with httpx.AsyncClient(timeout=20) as client:
+            resp = await client.get(SERPAPI_URL, params=params)
 
-        return resp.json()
+        if resp.status_code == 401:
+            raise HTTPException(status_code=502, detail="SerpAPI key is invalid.")
+        if resp.status_code != 200:
+            raise HTTPException(status_code=502, detail=f"SerpAPI error: {resp.status_code}")
+
+        data = resp.json()
+        return {
+            "jobs_results":    data.get("jobs_results", []),
+            "serpapi_pagination": data.get("serpapi_pagination", {}),
+        }
 
     except httpx.TimeoutException:
-        raise HTTPException(status_code=504, detail="Jobs API timed out. Try again.")
+        raise HTTPException(status_code=504, detail="SerpAPI timed out. Try again.")
     except HTTPException:
         raise
     except Exception as e:

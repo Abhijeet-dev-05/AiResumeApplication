@@ -17,7 +17,7 @@ services:
         sync: false
       - key: ALLOWED_ORIGINS
         sync: false
-      - key: JOBS_API_KEY
+      - key: SERPAPI_KEY
         sync: false
       - key: JWT_ALGORITHM
         value: HS256
