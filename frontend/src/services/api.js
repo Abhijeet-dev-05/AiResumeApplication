@@ -99,7 +99,7 @@ export async function fetchJobs({ limit = '20', title = '', location = '', compa
   if (company)    params.set('company',    company)
   if (experience) params.set('experience', experience)
   if (job_type)   params.set('job_type',   job_type)
-  const response = await api.get(`/jobs?${params.toString()}`, { timeout: 20000 })
+  const response = await api.get(`/jobs?${params.toString()}`, { timeout: 60000 })
   return response.data
 }
 export async function initCareerCoach(file) {

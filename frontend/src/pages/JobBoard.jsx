@@ -336,8 +336,8 @@ export default function JobBoard({ activePage = 'job-board', onNavigate }) {
 
   const { jobs, loading, error, load, reset } = useJobs()
 
-  // Auto-load on mount
-  useEffect(() => { load({ limit: '20' }) }, [load])
+  // Don't auto-load — wait for user to search
+  // useEffect(() => { load({ limit: '20' }) }, [load])
 
   const handleSearch = () => {
     load(filters)
@@ -439,14 +439,14 @@ export default function JobBoard({ activePage = 'job-board', onNavigate }) {
               </div>
             )}
 
-            {/* Empty state */}
+            {/* Empty state — before first search */}
             {!loading && !error && jobs.length === 0 && (
               <div className="text-center py-20 space-y-3">
                 <div className="w-16 h-16 rounded-2xl bg-muted flex items-center justify-center mx-auto">
-                  <Briefcase className="w-8 h-8 text-muted-foreground" />
+                  <Search className="w-8 h-8 text-muted-foreground" />
                 </div>
-                <p className="font-semibold text-foreground">No jobs found</p>
-                <p className="text-sm text-muted-foreground max-w-xs mx-auto">Try adjusting your filters or search for a different title/location.</p>
+                <p className="font-semibold text-foreground">Search for jobs</p>
+                <p className="text-sm text-muted-foreground max-w-xs mx-auto">Enter a job title, location, or use filters above and click Search Jobs.</p>
               </div>
             )}
 
