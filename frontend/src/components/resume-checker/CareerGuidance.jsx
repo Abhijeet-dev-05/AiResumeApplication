@@ -141,10 +141,10 @@ export default function CareerGuidance({ guidance }) {
       {/* Salary */}
       {guidance.expected_salary_range && (
         <div className="flex items-center gap-3 bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 rounded-xl px-4 py-3">
-          <DollarSign className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+          <span className="text-emerald-600 dark:text-emerald-400 shrink-0 font-bold text-sm">₹</span>
           <div>
             <p className="text-xs font-semibold text-emerald-700 dark:text-emerald-400 uppercase tracking-wider">
-              Expected Salary Range (Entry Level)
+              Expected Salary Range — India (Entry Level)
             </p>
             <p className="text-sm font-semibold text-emerald-800 dark:text-emerald-300 mt-0.5">
               {guidance.expected_salary_range}

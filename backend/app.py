@@ -245,7 +245,7 @@ Also provide:
 - Beginner Job Roles
 - Intermediate Job Roles
 - Advanced Career Growth
-- Expected Salary Range (entry level)
+- Expected Salary Range (entry level) in Indian Rupees (INR) per annum for India market
 - Five-Year Career Outlook
 
 ====================================================
