@@ -38,8 +38,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 32px;height:68px;
 .hstats{display:flex;gap:48px;justify-content:center;padding-top:20px;border-top:1px solid #e2ddd5}
 .hstat-n{font-size:2.2rem;font-weight:900;color:#c2622a;display:block;line-height:1}
 .hstat-l{font-size:.7rem;color:#9a8e7a;text-transform:uppercase;letter-spacing:1.5px;margin-top:5px}
-.scroll-ind{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:#9a8e7a;font-size:.72rem;letter-spacing:2px;text-transform:uppercase}
-.scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,#c2622a,transparent);animation:line-grow 2s ease-in-out infinite}
+.scroll-ind{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:#9a8e7a;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;z-index:3;pointer-events:none}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,#c2622a,transparent);animation:line-grow 2s ease-in-out infinite}
 @keyframes line-grow{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 """
 
@@ -181,7 +181,7 @@ TEMPLATE_HTML = (
       <div><span class="hstat-n">100%</span><div class="hstat-l">Dedicated</div></div>
     </div>
   </div>
-  <div class="scroll-ind"><span>Scroll</span><div class="scroll-line"></div></div>
+  <div class="scroll-ind"><div class="scroll-line"></div></div>
 </section>
 <section id="about" class="sec" data-a>
   <div class="wrap">
