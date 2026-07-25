@@ -222,14 +222,18 @@ function JobCard({ job, onClick }) {
 }
 
 // ── Filter Panel ──────────────────────────────────────────
-function FilterPanel({ filters, setFilters, onSearch, loading }) {
-  const JOB_TYPES = [
-    { label: 'Any Type', value: '' },
-    { label: 'Full-time', value: '' },         // google_jobs uses ltype
-    { label: 'Remote',    value: '' },
-    { label: 'Contractor', value: '' },
-  ]
+const JOB_TYPE_OPTIONS = [
+  { label: 'Any Type',   value: '' },
+  { label: 'Full Time',  value: 'full time' },
+  { label: 'Part Time',  value: 'part time' },
+  { label: 'Internship', value: 'internship' },
+  { label: 'Fresher',    value: 'fresher' },
+  { label: 'Entry Level',value: 'entry level' },
+  { label: 'Remote',     value: 'remote' },
+  { label: 'Contract',   value: 'contract' },
+]
 
+function FilterPanel({ filters, setFilters, onSearch, loading }) {
   return (
     <div className="bg-card border border-border rounded-2xl p-5 shadow-sm space-y-4">
       <div className="flex items-center gap-2">
@@ -262,8 +266,24 @@ function FilterPanel({ filters, setFilters, onSearch, loading }) {
         </div>
       </div>
 
-      {/* Work from home filter */}
-      <div className="flex items-center gap-3">
+      {/* Job Type + Remote row */}
+      <div className="flex flex-wrap items-center gap-3">
+        {/* Job type dropdown */}
+        <div className="relative">
+          <Briefcase className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground pointer-events-none" />
+          <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground pointer-events-none" />
+          <select
+            value={filters.jobType}
+            onChange={e => setFilters(f => ({ ...f, jobType: e.target.value }))}
+            className="pl-9 pr-8 py-2.5 rounded-xl border border-input bg-background text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring appearance-none min-w-40"
+          >
+            {JOB_TYPE_OPTIONS.map(o => (
+              <option key={o.value} value={o.value}>{o.label}</option>
+            ))}
+          </select>
+        </div>
+
+        {/* Remote checkbox */}
         <label className="flex items-center gap-2 cursor-pointer select-none">
           <input
             type="checkbox"
@@ -272,7 +292,7 @@ function FilterPanel({ filters, setFilters, onSearch, loading }) {
             className="w-4 h-4 accent-primary rounded"
           />
           <span className="text-sm text-foreground flex items-center gap-1.5">
-            <Home className="w-3.5 h-3.5 text-teal-500" />Work from home / Remote only
+            <Home className="w-3.5 h-3.5 text-teal-500" />Remote only
           </span>
         </label>
       </div>
@@ -289,7 +309,7 @@ function FilterPanel({ filters, setFilters, onSearch, loading }) {
             : <><Search className="w-4 h-4" />Search Jobs</>}
         </button>
         <button
-          onClick={() => setFilters({ q: '', location: '', ltype: '' })}
+          onClick={() => setFilters({ q: '', location: '', ltype: '', jobType: '' })}
           className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-border text-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
         >
           <RotateCcw className="w-3.5 h-3.5" />Clear
@@ -301,7 +321,7 @@ function FilterPanel({ filters, setFilters, onSearch, loading }) {
 
 // ── Main Page ─────────────────────────────────────────────
 export default function JobBoard({ activePage = 'job-board', onNavigate }) {
-  const [filters, setFilters]       = useState({ q: '', location: '', ltype: '' })
+  const [filters, setFilters]       = useState({ q: '', location: '', ltype: '', jobType: '' })
   const [selectedJob, setSelectedJob] = useState(null)
   const [localSearch, setLocalSearch] = useState('')
   const resultsRef = useRef(null)
@@ -310,7 +330,11 @@ export default function JobBoard({ activePage = 'job-board', onNavigate }) {
 
   const handleSearch = () => {
     if (!filters.q.trim()) return
-    load(filters)
+    // Append job type to query — SerpAPI uses query-based filtering
+    const fullQuery = filters.jobType
+      ? `${filters.q.trim()} ${filters.jobType}`
+      : filters.q.trim()
+    load({ q: fullQuery, location: filters.location, ltype: filters.ltype })
     setTimeout(() => resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100)
   }
 
