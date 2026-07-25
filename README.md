@@ -258,7 +258,7 @@ http://localhost:5173
 **Abhijeet Kumar**
 
 - GitHub: https://github.com/Abhijeet-dev-05
-- LinkedIn: *(Add your LinkedIn URL)*
+- LinkedIn: https://www.linkedin.com/in/abhijeet-kumar-830999282/
 - Portfolio: https://ai-resume-application-huh6.vercel.app/
 
 ---
