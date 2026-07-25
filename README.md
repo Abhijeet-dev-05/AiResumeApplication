@@ -41,20 +41,6 @@ Experience all AI-powered features instantly without any local setup.
 
 ---
 
-# 🖼️ Screenshots
-
-> Add screenshots here after deployment.
-
-- Landing Page
-- Resume Checker
-- Resume Scorer
-- Cover Letter Generator
-- Profile Builder
-- Interview Questions
-- Career Coach
-
----
-
 # 🛠 Tech Stack
 
 ## Backend
